@@ -1,3 +1,6 @@
+const User = require('./models/User');
+const Post = require('./models/Post');
+const Comment = require('./models/Comment');
 const path = require('path');
 const express = require('express');
 // Import express-session
@@ -13,21 +16,22 @@ const PORT = process.env.PORT || 3001;
 
 // Set up sessions
 const sess = {
-  secret: 'Super secret secret',
+  secret: 'Secret window',
   resave: false,
   saveUninitialized: true,
 };
 
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({helpers});
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+ app.engine('handlebars', hbs.engine);
+ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(routes);
 
