@@ -1,0 +1,12 @@
+
+
+{{#each posts as |post|}}
+<div class="card mb-2 ml-2 mr-2">
+  <h6 class="card-header">{{user.first_name}} {{user.last_name}} &#40;updated: {{format_time post.updatedAt}} {{format_date post.updatedAt}}&#41;</h6>
+  <div class="card-body">
+    <h5 class="card-title">{{post.subject}}</h5>
+    <p class="card-text">{{post.article}}</p>
+    <a href="#" class="btn btn-primary">Comments</a>
+  </div>
+</div>
+{{/each}}
