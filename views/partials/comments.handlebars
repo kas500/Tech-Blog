@@ -1,0 +1,6 @@
+{{#each comments as |comment|}}
+    <div class="d-flex flex-column justify-content-start ml-0"><span class="d-block name">{{user.username}}</span><span class="date text-black-50">posted {{format_date comment.updatedAt}} at {{format_time comment.updatedAt}}</span></div>
+      <div class="mt-2">
+      <p class="comment-text font-weight-light font-italic">{{comment.comment}}</p>
+    </div>
+{{/each}}
