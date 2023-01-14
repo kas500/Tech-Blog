@@ -1,29 +1,46 @@
 const router = require('express').Router();
+const { registerDecorator } = require('handlebars');
 const { Post, Comment, User } = require('../models');
-//Import the custom middleware
-//const withAuth = require('../utils/auth');
+//Import the auth middleware
+const withAuth = require('../utils/auth');
 
 // GET all posts for homepage
 router.get('/', async (req, res) => {
-    // find all posts
+    // find all posts with comments
     try {
       const postsData =  await Post.findAll({
         include: [
             {
               model: User,
-              attributes: ['first_name','last_name'],
+              attributes: ['username'],
+            },
+            {
+              model: Comment,
+              attributes: ['comment','user_id','updatedAt'],
+              include: [{
+                model: User,
+                attributes: ['username']
+              }]
             },
           ],
         });
-
-      const commentsData = await Comment.findAll({ where: { user_id: '1' } });
-      const comments = commentsData.map((comment) => comment.get({ plain: true }));
-      console.log(comments);
       const posts = postsData.map((post) => post.get({ plain: true }));
-      console.log(posts);
-      res.render('homepage', {posts});
+      console.log("___",req.session);
+      res.render('homepage', {posts, loggedIn: req.session.loggedIn});
     } catch (err) {
       res.status(500).json(err);
     }
   });
+
+  router.get('/login', (req, res) => {
+    console.log(req.session.loggedIn);
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+
 module.exports = router;
