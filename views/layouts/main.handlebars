@@ -28,12 +28,10 @@
       </li>
       
       {{#if loggedIn}}
-      <p>{{loggedIn}}</p>>
       <li class="nav-item">
-        <button id="logout" class="btn-no-style">Logout</button>
+        <a class="nav-link" id="logout" href="">Logout</a>
       </li>
       {{else}}
-      <p>{{loggedIn}}</p>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>

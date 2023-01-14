@@ -1,7 +1,7 @@
 {{#each posts as |post|}}
 {{!-- post div --}}
 <div class="card mb-2 ml-2 mr-2">
-    <h6 class="card-header">{{user.username}} &#40;updated: {{format_time post.updatedAt}} {{format_date post.updatedAt}}&#41;</h6>
+    <h6 class="card-header">{{user.username}} {{loggedIn}} &#40;updated: {{format_time post.updatedAt}} {{format_date post.updatedAt}}&#41;</h6>
     <div class="card-body">
     <h5 class="card-title">{{post.subject}}</h5>
     <p class="card-text">{{post.article}}</p>
@@ -14,10 +14,14 @@
                     {{!-- Comments div partial --}}
                     {{>comments}}
                 </div>
+                {{#if ../loggedIn}}
                 <div class="bg-light p-2">
                     <div class="d-flex flex-row align-items-start"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
                     <div class="mt-2 mb-1 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button>
                 </div>
+                {{else}}
+                    <p class="text-danger d-flex flex-row align-items-start">You must be logged in to post a comment.</p>
+                {{/if}}
             </div>
         </div>
     </div>
@@ -28,3 +32,4 @@
     </div>
 </div>
 {{/each}}
+
