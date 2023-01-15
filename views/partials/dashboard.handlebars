@@ -1,0 +1,42 @@
+  <a class="ml-2 mr-2 btn btn-primary col-12 d-flex justify-content-center" data-toggle="collapse" href="#createNewPost" role="button" aria-expanded="false" aria-controls="newPost">
+   Create a new post
+  </a>
+<div class="collapse" id="createNewPost">
+    <div class="m-3 card card-body">
+    <form>
+        <div class="form-group">
+            <label for="postSubject">Subject</label>
+            <input type="input" class="form-control" id="postSubject">
+        </div>
+        <div class="form-group">
+            <label for="postArticle">Article</label>
+            <div class="d-flex flex-row align-items-start"><textarea id="postArticle" userId="{{userId}}" class="form-control ml-1 shadow-none textarea"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="newPost">Post</button>
+    </form>
+    </div>
+</div>
+
+
+{{#each posts as |post|}}
+{{!-- post div --}}
+  <h1 class="display-5 d-flex justify-content-center">My posts</h1>
+  <a class="m-2 btn btn-primary col-12" data-toggle="collapse" href="#post" role="button" aria-expanded="false" aria-controls="post">
+    {{post.subject}} updated: {{format_time post.updatedAt}} {{format_date post.updatedAt}}
+  </a>
+<div class="collapse" id="post">
+    <div class="m-3 card card-body">
+    <form>
+        <div class="form-group">
+            <label for="postSubject">Subject</label>
+            <input type="input" class="form-control" id="postSubject" value="{{post.subject}}">
+        </div>
+        <div class="form-group">
+            <label for="postArticle">Article</label>
+            <div class="d-flex flex-row align-items-start"><textarea id="postText" userId="{{../userId}}" postId="{{post.id}}"  class="form-control ml-1 shadow-none textarea">{{post.article}}</textarea></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    </div>
+</div>
+{{/each}}

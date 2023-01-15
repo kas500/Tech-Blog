@@ -1,0 +1,34 @@
+{{#each posts as |post|}}
+{{!-- post div --}}
+<div class="card mb-2 ml-2 mr-2">
+    <h6 class="card-header">{{user.username}} {{loggedIn}} &#40;updated: {{format_time post.updatedAt}} {{format_date post.updatedAt}}&#41;</h6>
+    <div class="card-body">
+    <h5 class="card-title">{{post.subject}}</h5>
+    <p class="card-text">{{post.article}}</p>
+    <div class="container mt-5 ml-0 mb-2">
+    <div class="d-flex justify-content-left row">
+        <div class="col-md-12">
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white p-2">
+                    {{!-- Comments div partial --}}
+                    {{>comments}}
+                </div>
+                {{#if ../loggedIn}}
+                <form class="form comment-form">
+                <div class="bg-light p-2">
+                    <div class="d-flex flex-row align-items-start"><textarea id="commentText" userId="{{../userId}}" postId="{{post.id}}"  class="form-control ml-1 shadow-none textarea"></textarea></div>
+                    <div class="mt-2 mb-1 text-right"><button class="btn btn-primary btn-sm shadow-none" id="postComment" type="submit">Post comment</button>
+                </div>
+                </form>
+                {{else}}
+                    <p class="text-danger d-flex flex-row align-items-start">You must be logged in to post a comment.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    </div>
+    {{!-- <a class="btn btn-primary mt-2" data-toggle="collapse" href="#collapseIt" role="button">Comments</a> --}}
+    </div>
+    </div>
+</div>
+{{/each}}
