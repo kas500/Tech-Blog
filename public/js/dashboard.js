@@ -52,9 +52,10 @@
     }
 
      //delete post
-     const deletePostButton = document.querySelector("#deletePost");
-     deletePostButton.addEventListener('click', async function (e) {
-       const postId = e.target.parentNode.parentNode.querySelector("#postText").getAttribute("postId");
+     const deletePostButtons = document.querySelectorAll("#deletePost");
+     for (let i = 0; i < updateButtons.length; i++) {
+     deletePostButtons[i].addEventListener('click', async function (e) {
+       const postId = e.target.parentNode.parentNode.querySelector("#postText").getAttribute("postid");
          const response = await fetch('/api/dashboard/delete', {
            method: 'DELETE',
            body: JSON.stringify({
@@ -68,3 +69,4 @@
            alert("Cannot delete post");
          }
      });
+    }
