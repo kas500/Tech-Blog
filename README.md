@@ -37,7 +37,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Test instructions
 
-in order to test the application use the command "npm run test" from folder "__tests__". The folder contains unit tests for Employee, Engineer, Imntern and Manager classes.
+no tests
 
 ## License
 
