@@ -15,6 +15,7 @@ const postButtons = document.querySelectorAll('#postComment');
     
         if (response.ok) {
           document.location.replace('/');
+          location.reload();
         } else {
         
           alert("Cannot post a comment");

@@ -14,7 +14,6 @@ router.post('/', withAuth, async (req, res) => {
         res.status(200).json(dbPostData);
     } 
     catch (error) {
-        console.log("from dash routes", response.status);
         res.status(500).json(error);
     }
 });
@@ -34,7 +33,6 @@ router.put('/update',withAuth, async (req, res) => {
         res.status(200).json(dbPostUpdatedData);
     } 
     catch (error) {
-        console.log(response.status);
         res.status(500).json(error);
     }
 });
@@ -50,7 +48,6 @@ router.delete('/delete', withAuth, async (req, res) => {
         res.status(200).json(dbPostDeletedData);
     } 
     catch (error) {
-        console.log(response.status);
         res.status(500).json(error);
     }
 });
