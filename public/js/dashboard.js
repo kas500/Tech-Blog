@@ -1,3 +1,4 @@
+    //create new post
     const newPostButton = document.querySelector("#newPost");
     newPostButton.addEventListener('click', async function (e) {
       const postSubject = document.querySelector("#postSubject").value.trim();
@@ -6,14 +7,14 @@
       if (postSubject && postArticle) {
         const response = await fetch('/api/dashboard', {
           method: 'POST',
-          body: JSON.stringify({postSubject, postArticle, user_id}),
+          body: JSON.stringify({
+            subject: postSubject, 
+            article: postArticle, 
+            user_id: user_id}),
           headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-          alert(response.statusText)
-          document.location.replace('/');
         } else {
-          alert(response.url);
           alert("Cannot create post");
         }
       }
@@ -21,3 +22,43 @@
         alert("Please fill out all fields");
       }
     });
+
+     //update post
+     const updateButtons = document.querySelectorAll('#updatePost');
+     for (let i = 0; i < updateButtons.length; i++) {
+      updateButtons[i].addEventListener('click', async function (e) {
+      const postId = e.target.parentNode.parentNode.querySelector("#postText").getAttribute("postId");
+      const postSubject = e.target.parentNode.parentNode.querySelector("#postSubject").value.trim();
+      const postText = e.target.parentNode.parentNode.querySelector("#postText").value.trim();
+        const response = await fetch('/api/dashboard/update', {
+          method: 'PUT',
+          body: JSON.stringify({
+            id: postId, 
+            subject: postSubject, 
+            article: postText,}),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        
+        if (response.ok) {
+        } else {
+          alert("Cannot update post");
+        }
+    
+    });
+    }
+
+     //delete post
+     const deletePostButton = document.querySelector("#deletePost");
+     deletePostButton.addEventListener('click', async function (e) {
+       const postId = e.target.parentNode.parentNode.querySelector("#postText").getAttribute("postId");
+         const response = await fetch('/api/dashboard/delete', {
+           method: 'DELETE',
+           body: JSON.stringify({
+            id: postId}),
+           headers: { 'Content-Type': 'application/json' },
+         });
+         if (response.ok) {
+         } else {
+           alert("Cannot delete post");
+         }
+     });
