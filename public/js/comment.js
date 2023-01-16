@@ -1,3 +1,4 @@
+//post comments handler
 const postButtons = document.querySelectorAll('#postComment');
   for (let i = 0; i < postButtons.length; i++) {
     postButtons[i].addEventListener('click', async function (e) {
