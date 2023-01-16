@@ -14,6 +14,7 @@
           headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
+          document.location.replace('/dashboard');
           location.reload();
         } else {
           alert("Cannot create post");
@@ -41,6 +42,7 @@
         });
         
         if (response.ok) {
+          document.location.replace('/dashboard');
           location.reload();
         } else {
           alert("Cannot update post");
@@ -60,6 +62,7 @@
            headers: { 'Content-Type': 'application/json' },
          });
          if (response.ok) {
+          document.location.replace('/dashboard');
           location.reload();
          } else {
            alert("Cannot delete post");
