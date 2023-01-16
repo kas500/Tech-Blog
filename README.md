@@ -17,7 +17,7 @@ For the application to work correctly, you need to download and install Node.js 
 
 ## Usage
   
-The application is available at the link http://. On the homepage you can see all post which were created. In order to  leave a comment you need to  signup or login. To create/update/delete
+The application is available at the link https://tech-blog-kas500.herokuapp.com/. On the homepage you can see all post which were created. In order to  leave a comment you need to  signup or login. To create/update/delete
 you post you need to follow the link "Dashboard". To logout use the navigation link "Logout".
 
 ### Home page screenshot
